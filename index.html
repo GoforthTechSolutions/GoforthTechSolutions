@@ -539,12 +539,7 @@
 
           <div class="contact-card p-4">
             <!-- Replace action and email with your own -->
-            <form
-              id="gts-Contact-Form"
-              action="https://formspree.io/f/xwpwdqbn"
-              method="POST"
-              enctype="text/plain"
-            >
+            <form action="https://formspree.io/f/xwpwdqbn" method="POST">
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input
@@ -689,38 +684,6 @@
   <script>
     // Set current year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-  <script>
-    var form = document.getElementById("gts-Contact-Form");
-    
-    async function handleSubmit(event) {
-      event.preventDefault();
-      var status = document.getElementById("gts-Contact-Form-status");
-      var data = new FormData(event.target);
-      fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          status.innerHTML = "Thanks for your submission!";
-          form.reset()
-        } else {
-          response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
-              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-            } else {
-              status.innerHTML = "Oops! There was a problem submitting your form"
-            }
-          })
-        }
-      }).catch(error => {
-        status.innerHTML = "Oops! There was a problem submitting your form"
-      });
-    }
-    form.addEventListener("submit", handleSubmit)
   </script>
 </body>
 </html>
